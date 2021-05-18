@@ -21,7 +21,7 @@ export class ListadoNotasComponent implements OnInit {
     private registroNotas:NotasRegistroService
   ) {
     this.editar.editarNota = false;
-    this.notas = this.editar.GetNota() as Array<Nota>;
+    this.notas = this.editar.GetNota();
      
   }
 
