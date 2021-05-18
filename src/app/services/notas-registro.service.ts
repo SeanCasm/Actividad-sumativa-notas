@@ -12,5 +12,9 @@ export class NotasRegistroService {
     }
     return false;
   }
-  
+  eliminarID(id:number){
+    this.notasID.forEach((item,index)=>{
+      if(item==id)this.notasID.splice(index,1);
+    });
+  }
 }

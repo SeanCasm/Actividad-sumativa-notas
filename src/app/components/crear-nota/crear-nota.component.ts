@@ -1,3 +1,4 @@
+import { NotasRegistroService } from './../../services/notas-registro.service';
 import { EditarNotaService } from '../../services/editar-nota.service';
 import { Nota, misNotas } from '../../interfaces/nota';
 import { Component, OnInit } from '@angular/core';
@@ -15,7 +16,7 @@ export class CrearNotaComponent implements OnInit {
   primeraVisita: boolean = true;
   public estado: string = '';
   //#endregion
-  constructor(public router: Router, private notaServicio: EditarNotaService) {
+  constructor(public router: Router, private notaServicio: EditarNotaService,private registroNotas:NotasRegistroService) {
     if (notaServicio.editarNota) {
       this.rellenarEditarNotaServicio();
     } else {
@@ -67,9 +68,17 @@ export class CrearNotaComponent implements OnInit {
       this.router.navigate(['../listado-notas']);
     }
   }
+  GenerarID():number {
+    var id:number=0;
+    do {
+      id =Math.floor(Math.random() * (100000000 - (-100000000 + 1))) + -100000000;
+    } while (this.registroNotas.validarNotaRegistrada(id));
+    this.registroNotas.notasID.push(id);
+    return id;
+  }
   public crearNota() {
     var nota: Nota = {
-      id: 0,
+      id:this.GenerarID(),
       titulo: this.titulo,
       descripcion: this.descripcion,
       estado: this.estado,

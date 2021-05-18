@@ -1,3 +1,4 @@
+import { NotasRegistroService } from './../../services/notas-registro.service';
 import { EditarNotaService } from '../../services/editar-nota.service';
 import { Router } from '@angular/router';
 import { Nota, misNotas } from '../../interfaces/nota';
@@ -12,25 +13,31 @@ import { MatDialog } from '@angular/material/dialog';
 export class ListadoNotasComponent implements OnInit {
   notas: Array<Nota> = misNotas;
 
-  primeraEntrada: boolean = true;
+  static primeraEntrada: boolean = true;
   constructor(
     public dialog: MatDialog,
     private router: Router,
     private editar: EditarNotaService,
-    private notaServicio: EditarNotaService
+    private registroNotas:NotasRegistroService
   ) {
     this.editar.editarNota = false;
-    this.notas = this.notaServicio.GetNota() as Array<Nota>;
-    //se rellena la lista de la interface
-    if (this.primeraEntrada) {
-      this.notas.forEach((item) => {
-        misNotas.push(item);
-      });
-    }
-    this.primeraEntrada = false;
+    this.notas = this.editar.GetNota() as Array<Nota>;
+     
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    //primera vez que entra en esta vista
+    console.log(ListadoNotasComponent.primeraEntrada);
+    if (ListadoNotasComponent.primeraEntrada) {
+      //rellena la lista de la interface
+      this.notas.forEach((item) => {
+        misNotas.push(item);
+        //rellena las id del servicio notas-registro
+        this.registroNotas.notasID.push(item.id);
+      });
+    }
+    ListadoNotasComponent.primeraEntrada = false;
+  }
   setNotaEditar(nota: Nota) {
     this.editar.notaEditar = nota;
     this.editar.editarNota = true;
