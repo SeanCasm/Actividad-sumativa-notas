@@ -1,0 +1,7 @@
+En caso de perder las notas por default en notas.json, copiar y pegar:
+
+[
+  { "id": 0, "titulo": "Nota", "estado": "Proceso", "descripcion": "Lorem ipsum 1" },
+  {"id": 2, "titulo": "Nota", "estado": "Abierto", "descripcion": "Lorem ipsum 3" },
+  {"id": 3, "titulo": "Nota", "estado": "Cerrado", "descripcion": "Lorem ipsum 4" },
+]

@@ -1,0 +1,62 @@
+<section>
+    <div class="container">
+        <h1>Mis notas</h1>
+        <ul>
+            <div class="cerrado">
+                <li class="separacion" *ngFor="let item of notas">
+                    <div class="notas-box notas-box-cerrado" *ngIf="item.estado=='Cerrado'">
+                        <div class="d-flex justify-content-around align-items-center">
+                            <p>{{item.titulo}}</p>
+                            <button class="btn-nota" mat-fab color="warn" aria-label="Example icon button with a delete icon" (click)="eliminarNota(item)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </div>
+                        <br>
+                        <p>{{item.descripcion}}</p>
+                    </div>
+                </li>
+            </div>
+            <div class="activo">
+                <li class="separacion" *ngFor="let item of notas">
+                    <div class="notas-box notas-box-activo" *ngIf="item.estado=='Abierto'">
+                        <div class="d-flex justify-content-around align-items-center">
+                            <p>{{item.titulo}}</p>
+                            <button class="btn-nota" mat-fab color="warn" aria-label="Example icon button with a delete icon" (click)="eliminarNota(item)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                            <button class="btn-nota" (click)="setNotaEditar(item)" mat-fab color="primary"
+                                aria-label="Example icon button with a delete icon">
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                        </div>
+                        <br>
+                        <p>{{item.descripcion}}</p>
+                    </div>
+                </li>
+            </div>
+            <div class="proceso">
+                <li class="separacion" *ngFor="let item of notas">
+                    <div class="notas-box notas-box-proceso" *ngIf="item.estado=='Proceso'">
+                        <div class="d-flex justify-content-around align-items-center">
+                            <p>{{item.titulo}}</p>
+                            <button class="btn-nota" mat-fab color="warn" aria-label="Example icon button with a delete icon" (click)="eliminarNota(item)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                            <button class="btn-nota" (click)="setNotaEditar(item)" mat-fab color="primary"
+                                aria-label="Example icon button with a delete icon">
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                        </div>
+                        <br>
+                        <p>{{item.descripcion}}</p>
+                    </div>
+                </li>
+            </div>
+        </ul>
+    </div>
+</section>
+<footer>
+    <div class="example-button-row">
+        <button mat-raised-button color="primary" [routerLink]="['/']" routerLinkActive="router-link-active" >+ Adicionar</button>
+    </div>
+</footer>

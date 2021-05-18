@@ -1,0 +1,30 @@
+.notas-box{
+    border:2px solid rgb(117, 66, 66);
+}
+.separacion{
+    margin: 20px;
+}
+.notas-box-activo{
+    background-color: rgb(81, 184, 124);
+}
+.notas-box-cerrado {
+  background-color: red;
+}
+.notas-box-proceso {
+  background-color: cyan;
+}
+.btn-nota{
+  transform: scale(.75);
+}
+.activo{
+  width: 33%;
+  display: inline-block;
+}
+.cerrado{
+  width: 33%;
+  display: inline-block;
+}
+.proceso{
+  width: 33%;
+  display: inline-block;
+}
