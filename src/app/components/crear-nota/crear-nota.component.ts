@@ -10,33 +10,36 @@ import { Router } from '@angular/router';
 })
 export class CrearNotaComponent implements OnInit {
   //#region Propiedades
-  titulo: string = '';
-  descripcion: string = '';
+  notaEditar: Nota = { id: 0, titulo: '', descripcion: '', estado: '' };
   datosCompletos: boolean = false;
   primeraVisita: boolean = true;
-  public estado: string = '';
   //#endregion
-  constructor(public router: Router, private notaServicio: EditarNotaService,private registroNotas:NotasRegistroService) {
+  constructor(
+    public router: Router,
+    private notaServicio: EditarNotaService,
+    private registroNotas: NotasRegistroService
+  ) {
     if (notaServicio.editarNota) {
       this.rellenarEditarNotaServicio();
     } else {
-      this.titulo = this.descripcion = this.estado = '';
+      this.notaEditar.titulo =
+        this.notaEditar.descripcion =
+        this.notaEditar.estado =
+          '';
     }
   }
   ngOnInit(): void {}
   //#region Metodos para notas
   public rellenarEditarNotaServicio() {
-    this.titulo = this.notaServicio.notaEditar.titulo;
-    this.estado = this.notaServicio.notaEditar.estado;
-    this.descripcion = this.notaServicio.notaEditar.descripcion;
+    this.notaEditar=this.notaServicio.notaEditar;
   }
   public checkNota() {
     if (!this.notaServicio.editarNota) {
       if (
-        this.titulo == '' ||
-        this.estado == '' ||
-        this.descripcion == '' ||
-        this.descripcion!.length > 150
+        this.notaEditar.titulo == '' ||
+        this.notaEditar.estado == '' ||
+        this.notaEditar.descripcion == '' ||
+        this.notaEditar.descripcion!.length > 150
       ) {
         this.datosCompletos = false;
       } else {
@@ -50,17 +53,15 @@ export class CrearNotaComponent implements OnInit {
   }
   public editarNota() {
     if (
-      this.titulo == '' ||
-      this.estado == '' ||
-      this.descripcion == '' ||
-      this.descripcion!.length > 150
+      this.notaEditar.titulo == '' ||
+      this.notaEditar.estado == '' ||
+      this.notaEditar.descripcion == '' ||
+      this.notaEditar.descripcion!.length > 150
     ) {
       this.primeraVisita = this.datosCompletos = false;
     } else {
       this.primeraVisita = this.datosCompletos = true;
-      this.notaServicio.notaEditar.titulo = this.titulo;
-      this.notaServicio.notaEditar.estado = this.estado;
-      this.notaServicio.notaEditar.descripcion = this.descripcion;
+      this.notaServicio.notaEditar= this.notaEditar;
       this.notaServicio.editarNota = false;
       this.notaServicio.GuardarNota().subscribe((datos) => {
         console.log(datos);
@@ -68,24 +69,25 @@ export class CrearNotaComponent implements OnInit {
       this.router.navigate(['../listado-notas']);
     }
   }
-  GenerarID():number {
-    var id:number=0;
+  GenerarID(): number {
+    var id: number = 0;
     do {
-      id =Math.floor(Math.random() * (100000000 - (-100000000 + 1))) + -100000000;
+      id =
+        Math.floor(Math.random() * (100000000 - (-100000000 + 1))) + -100000000;
     } while (this.registroNotas.validarNotaRegistrada(id));
     this.registroNotas.notasID.push(id);
     return id;
   }
   public crearNota() {
     var nota: Nota = {
-      id:this.GenerarID(),
-      titulo: this.titulo,
-      descripcion: this.descripcion,
-      estado: this.estado,
+      id: this.GenerarID(),
+      titulo: this.notaEditar.titulo,
+      descripcion: this.notaEditar.descripcion,
+      estado: this.notaEditar.estado,
     };
     misNotas.push(nota);
     this.primeraVisita = true;
-    this.notaServicio.GuardarNota().subscribe(datos=>{
+    this.notaServicio.GuardarNota().subscribe((datos) => {
       console.log(datos);
     });
     this.router.navigate(['../listado-notas']);

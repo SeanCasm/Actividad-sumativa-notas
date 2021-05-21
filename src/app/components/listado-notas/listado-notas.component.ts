@@ -3,7 +3,6 @@ import { EditarNotaService } from '../../services/editar-nota.service';
 import { Router } from '@angular/router';
 import { Nota, misNotas } from '../../interfaces/nota';
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-listado-notas',
@@ -27,7 +26,6 @@ export class ListadoNotasComponent implements OnInit {
 
   ngOnInit(): void {
     //primera vez que entra en esta vista
-    console.log(ListadoNotasComponent.primeraEntrada);
     if (ListadoNotasComponent.primeraEntrada) {
       //rellena la lista de la interface
       this.notas.forEach((item) => {
@@ -41,7 +39,6 @@ export class ListadoNotasComponent implements OnInit {
   setNotaEditar(nota: Nota) {
     this.editar.notaEditar = nota;
     this.editar.editarNota = true;
-
     this.router.navigate(['/']);
   }
   eliminarNota(nota: Nota){
