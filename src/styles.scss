@@ -142,3 +142,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 body{
     text-align: center;
 }
+.btn-full-width {
+  width: 100%;
+}
+.bottom {
+  position: fixed;
+  bottom:0;
+  width: 100%;
+}
