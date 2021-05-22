@@ -18,17 +18,31 @@ export class EditarNotaService {
 
   constructor(private servicio: HttpClient) {}
   //#region Metodos para notas
+  /**
+   * Establece la nota a editar
+   * @param estado 
+   * @param titulo 
+   * @param descripcion 
+   */
   SetNota(estado:string,titulo:string,descripcion:string){
     this.notaEditar.titulo=titulo;
     this.notaEditar.estado=estado;
     this.notaEditar.descripcion=descripcion;
   }
+  /**
+   * Guarda la nota en un .json mediante el metodo POST. 
+   * @returns
+   */
   GuardarNota(): Observable<any> {
     return this.servicio.post(
       `${this.url}guardar.php`,
       JSON.stringify(misNotas)
     );
   }
+  /**
+   * Obtiene la nota de un .json mediante el metodo GET
+   * @returns 
+   */
   GetNota(): Observable<any> {
     return this.servicio.get(`${this.url}leer.php`);
     /*

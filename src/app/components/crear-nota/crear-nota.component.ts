@@ -22,6 +22,9 @@ export class CrearNotaComponent implements OnInit {
     private notaServicio: EditarNotaService,
     private registroNotas: NotasRegistroService
   ) {
+    /**
+     * Si al cargar la vista actual, el usuario a seleccionado editar una nota...
+     */
     if (notaServicio.editarNota) {
       this.rellenarEditarNotaServicio();
     } else {
@@ -33,11 +36,18 @@ export class CrearNotaComponent implements OnInit {
   }
   ngOnInit(): void {}
   //#region Metodos para notas
+  /**
+   * Rellena los datos de la vista actual.
+   */
   public rellenarEditarNotaServicio() {
     this.titulo=this.notaServicio.notaEditar.titulo;
     this.descripcion=this.notaServicio.notaEditar.descripcion;
     this.estado=this.notaServicio.notaEditar.estado;
   }
+  /**
+   * Comprueba si la vista actual corresponde a una nota en edicion o creacion, 
+   * para comprobar el llenado de sus campos.
+   */
   public checkNota() {
     if (!this.notaServicio.editarNota) {
       if (
@@ -56,6 +66,9 @@ export class CrearNotaComponent implements OnInit {
       this.editarNota();
     }
   }
+  /**
+   * Modifica la nota referida por el usuario y vuelve a la vista principal.
+   */
   public editarNota() {
     if (
       this.titulo == '' ||
@@ -74,6 +87,10 @@ export class CrearNotaComponent implements OnInit {
       this.router.navigate(['../listado-notas']);
     }
   }
+  /**
+   * Genera una ID para la nota.
+   * @returns numero entero negativo o positivo correspondiente a la ID generada.
+   */
   GenerarID(): number {
     var id: number = 0;
     do {
@@ -83,6 +100,10 @@ export class CrearNotaComponent implements OnInit {
     this.registroNotas.notasID.push(id);
     return id;
   }
+  /**
+   * Crea la nota y hace un push en el Array de la interfaz Nota,
+   * luego vuelve a la vista principal.
+   */
   public crearNota() {
     var nota: Nota = {
       id: this.GenerarID(),
