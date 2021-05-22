@@ -30,16 +30,7 @@
   display: inline-block;
 }
 @media (max-width:768px){
-  .activo {
+  .activo,.cerrado,.proceso{
     width: 100%;
   }
-
-  .cerrado {
-    width: 100%;
-  }
-
-  .proceso {
-    width: 100%;
-  }
-   
 }

@@ -1,6 +1,6 @@
 import { misNotas, Nota } from '../interfaces/nota';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import notas from '../../../backend/notas.json';
 @Injectable({
@@ -9,7 +9,13 @@ import notas from '../../../backend/notas.json';
 export class EditarNotaService {
   notaEditar: Nota = { id: 0, titulo: '', descripcion: '', estado: '' };
   public editarNota: boolean = false;
-  url: string = 'http://localhost:8080/';
+
+  //______________________________________________
+  url: string = 'http://localhost:8080/backend/'; //=C:/Users/Sebastian/Desktop/WEBS/act3/
+  //*cambiar la raiz en Apache httpd.conf para que funcione.
+  //*hemos usado XAMPP para iniciar Apache.
+  //______________________________________________
+
   constructor(private servicio: HttpClient) {}
   //#region Metodos para notas
 
@@ -20,10 +26,10 @@ export class EditarNotaService {
     );
   }
 
-  GetNota():any {
+  GetNota(): any {
     if((notas as Array<Nota>).length>0)return notas;
     else return;
   }
-  
+
   //#endregion
 }
