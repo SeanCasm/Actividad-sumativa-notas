@@ -1,3 +1,5 @@
+# Nombres
+Sergio Tapia Ortiz: 20.308.953-8 , Sebastian Cataldo Smith: 20.319.456-0
 # Act3
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.4.
