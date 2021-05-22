@@ -1,7 +1,8 @@
+import { misNotas } from './../../interfaces/nota';
 import { NotasRegistroService } from './../../services/notas-registro.service';
 import { EditarNotaService } from '../../services/editar-nota.service';
 import { Router } from '@angular/router';
-import { Nota, misNotas } from '../../interfaces/nota';
+import { Nota } from '../../interfaces/nota';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 @Component({
@@ -30,6 +31,8 @@ export class ListadoNotasComponent implements OnInit {
     });
   }
   rellenarListaInterface(){
+    //evita una duplicacion de las notas en el array
+    misNotas.splice(0,misNotas.length);
     //primera vez que entra en esta vista
       console.log(this.notas);
       //rellena la lista de la interface
@@ -38,7 +41,7 @@ export class ListadoNotasComponent implements OnInit {
         //rellena las id del servicio notas-registro
         this.registroNotas.notasID.push(item.id);
       });
-
+      console.log(misNotas.length);
   }
   setNotaEditar(nota: Nota) {
     this.editar.notaEditar = nota;
