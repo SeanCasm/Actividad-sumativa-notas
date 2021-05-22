@@ -20,23 +20,32 @@ export class ListadoNotasComponent implements OnInit {
     private registroNotas:NotasRegistroService
   ) {
     this.editar.editarNota = false;
-     this.editar.GetNota().subscribe(data=>{
-       this.notas=data;
-     });
      
   }
 
   ngOnInit(): void {
+    //this.notas=this.editar.GetNota();
+    this.editar.GetNota().subscribe((data) => {
+      console.log(data);
+      this.notas = data;
+      this.rellenarListaInterface();
+    });
+     
+    console.log(misNotas);
+        
+  }
+  rellenarListaInterface(){
     //primera vez que entra en esta vista
-    if (ListadoNotasComponent.primeraEntrada) {
-      //rellena la lista de la interface
-      this.notas.forEach((item) => {
-        misNotas.push(item);
-        //rellena las id del servicio notas-registro
-        this.registroNotas.notasID.push(item.id);
-      });
-    }
+    //if (ListadoNotasComponent.primeraEntrada) {
+    //rellena la lista de la interface
+    this.notas.forEach((item) => {
+      misNotas.push(item);
+      //rellena las id del servicio notas-registro
+      this.registroNotas.notasID.push(item.id);
+    });
+    //}
     ListadoNotasComponent.primeraEntrada = false;
+
   }
   setNotaEditar(nota: Nota) {
     this.editar.notaEditar = nota;

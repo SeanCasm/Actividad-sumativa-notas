@@ -87,7 +87,7 @@ export class CrearNotaComponent implements OnInit {
     };
     misNotas.push(nota);
     this.primeraVisita = true;
-    this.notaServicio.GuardarNota().subscribe((datos) => {
+    this.notaServicio.GuardarNota().subscribe(datos => {
       console.log(datos);
     });
     this.router.navigate(['../listado-notas']);
