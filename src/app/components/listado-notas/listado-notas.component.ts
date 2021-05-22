@@ -11,8 +11,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class ListadoNotasComponent implements OnInit {
   notas: Array<Nota> = misNotas;
-
-  static primeraEntrada: boolean = true;
+  static primeraEntrada:boolean=true;
   constructor(
     public dialog: MatDialog,
     private router: Router,
@@ -24,27 +23,21 @@ export class ListadoNotasComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //this.notas=this.editar.GetNota();
     this.editar.GetNota().subscribe((data) => {
       console.log(data);
       this.notas = data;
       this.rellenarListaInterface();
     });
-     
-    console.log(misNotas);
-        
   }
   rellenarListaInterface(){
     //primera vez que entra en esta vista
-    //if (ListadoNotasComponent.primeraEntrada) {
-    //rellena la lista de la interface
-    this.notas.forEach((item) => {
-      misNotas.push(item);
-      //rellena las id del servicio notas-registro
-      this.registroNotas.notasID.push(item.id);
-    });
-    //}
-    ListadoNotasComponent.primeraEntrada = false;
+      console.log(this.notas);
+      //rellena la lista de la interface
+      this.notas.forEach((item) => {
+        misNotas.push(item);
+        //rellena las id del servicio notas-registro
+        this.registroNotas.notasID.push(item.id);
+      });
 
   }
   setNotaEditar(nota: Nota) {

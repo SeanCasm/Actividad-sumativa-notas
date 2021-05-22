@@ -18,7 +18,11 @@ export class EditarNotaService {
 
   constructor(private servicio: HttpClient) {}
   //#region Metodos para notas
-
+  SetNota(estado:string,titulo:string,descripcion:string){
+    this.notaEditar.titulo=titulo;
+    this.notaEditar.estado=estado;
+    this.notaEditar.descripcion=descripcion;
+  }
   GuardarNota(): Observable<any> {
     return this.servicio.post(
       `${this.url}guardar.php`,

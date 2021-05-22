@@ -4,7 +4,7 @@
         <label>Titulo</label><br>
         <mat-form-field class="example-form-field">
             <mat-label>Nota</mat-label>
-            <input matInput [ngModelOptions]="{ standalone: true }" [(ngModel)]="notaEditar.titulo" matInput type="text">
+            <input matInput [ngModelOptions]="{ standalone: true }" [(ngModel)]="titulo" matInput type="text">
         </mat-form-field>
     </div>
     <div>
@@ -12,18 +12,18 @@
         <mat-form-field appearance="fill">
             <mat-label>Select</mat-label>
             <mat-select>
-                <mat-option value="one" (click)="notaEditar.estado='Abierto'">Abierto</mat-option>
-                <mat-option value="two" (click)="notaEditar.estado='Proceso'">Proceso</mat-option>
-                <mat-option value="three" (click)="notaEditar.estado='Cerrado'">Cerrado</mat-option>
+                <mat-option value="one" (click)="estado='Abierto'">Abierto</mat-option>
+                <mat-option value="two" (click)="estado='Proceso'">Proceso</mat-option>
+                <mat-option value="three" (click)="estado='Cerrado'">Cerrado</mat-option>
             </mat-select>
         </mat-form-field>
     </div>
     <mat-form-field appearance="fill">
         <mat-label>Descripcion</mat-label>
-        <textarea [ngModelOptions]="{ standalone: true }" [(ngModel)]="notaEditar.descripcion" matInput></textarea>
+        <textarea [ngModelOptions]="{ standalone: true }" [(ngModel)]="descripcion" matInput></textarea>
     </mat-form-field>
-    <p>Caracteres: {{notaEditar.descripcion.length}}/150 </p>
-    <div *ngIf="notaEditar.descripcion.length>150">
+    <p>Caracteres: {{descripcion.length}}/150 </p>
+    <div *ngIf="descripcion.length>150">
         <p class="error-formulario">¡Limite de caracteres excedido!</p>
     </div>
     <footer>
