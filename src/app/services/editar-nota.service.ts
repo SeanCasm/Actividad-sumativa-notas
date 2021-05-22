@@ -14,7 +14,6 @@ export class EditarNotaService {
   url: string = 'http://localhost:8080/backend/'; //=C:/Users/Sebastian/Desktop/WEBS/act3/
   //*cambiar la raiz en Apache httpd.conf para que funcione.
   //*hemos usado XAMPP para iniciar Apache.
-  //*trabajamos en localhost, el metodo GET no nos funcionó
   //______________________________________________
 
   constructor(private servicio: HttpClient) {}
@@ -26,10 +25,11 @@ export class EditarNotaService {
       JSON.stringify(misNotas)
     );
   }
-  //No nos resultó el get :C
-  GetNota(): any {
+  GetNota(): Observable<any> {
+    return this.servicio.get(`${this.url}leer.php`);
+    /*
     if((notas as Array<Nota>).length>0)return notas;
-    else return;
+    else return;*/
   }
 
   //#endregion

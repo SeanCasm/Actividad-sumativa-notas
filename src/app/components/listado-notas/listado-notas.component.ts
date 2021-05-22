@@ -20,7 +20,9 @@ export class ListadoNotasComponent implements OnInit {
     private registroNotas:NotasRegistroService
   ) {
     this.editar.editarNota = false;
-    this.notas = this.editar.GetNota();
+     this.editar.GetNota().subscribe(data=>{
+       this.notas=data;
+     });
      
   }
 
